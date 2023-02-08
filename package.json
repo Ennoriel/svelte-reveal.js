@@ -11,7 +11,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"copyPlugins": "mkdir package\\plugins && cp node_modules/reveal.js/plugin/**/*.esm.js package/plugins -r",
+		"copyPlugins": "mkdir package/plugins && cp node_modules/reveal.js/plugin/**/*.esm.js package/plugins -r",
 		"package": "svelte-kit sync && svelte-package && pnpm copyPlugins",
 		"prepublishOnly": "echo 'Did you mean to publish `./package/`, instead of `./`?' && exit 1",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
