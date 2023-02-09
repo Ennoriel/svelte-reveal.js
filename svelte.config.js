@@ -9,6 +9,16 @@ const config = {
 
 	kit: {
 		adapter: adapter()
+	},
+	
+	vitePlugin: {
+		experimental: {
+			inspector: {
+				holdMode: true,
+				showToggleButton: 'always',
+				toggleButtonPos: 'bottom-right'
+			}
+		}
 	}
 };
 
