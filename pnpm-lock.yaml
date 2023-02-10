@@ -21,13 +21,13 @@ specifiers:
   vite-plugin-static-copy: ^0.13.0
 
 dependencies:
+  '@types/reveal.js': 4.4.1
   reveal.js: 4.4.0
 
 devDependencies:
   '@sveltejs/adapter-auto': 2.0.0_@sveltejs+kit@1.5.0
   '@sveltejs/kit': 1.5.0_svelte@3.55.1+vite@4.1.1
   '@sveltejs/package': 1.0.2_4x7phaipmicbaooxtnresslofa
-  '@types/reveal.js': 4.4.1
   '@typescript-eslint/eslint-plugin': 5.51.0_b635kmla6dsb4frxfihkw4m47e
   '@typescript-eslint/parser': 5.51.0_4vsywjlpuriuw3tl5oq6zy5a64
   eslint: 8.33.0
@@ -410,7 +410,7 @@ packages:
 
   /@types/reveal.js/4.4.1:
     resolution: {integrity: sha512-oMcIAaP9rFCODHdGC2RM71cbBGOPc4prolkPEN98LUQm9b64ePjNpD/Fb2b/oep2w0XDN4aYCdUmip6kuLEJBg==}
-    dev: true
+    dev: false
 
   /@types/sass/1.43.1:
     resolution: {integrity: sha512-BPdoIt1lfJ6B7rw35ncdwBZrAssjcwzI5LByIrYs+tpXlj/CAkuVdRsgZDdP4lq5EjyWzwxZCqAoFyHKFwp32g==}
