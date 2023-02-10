@@ -2,8 +2,8 @@
 	import type Reveal from 'reveal.js';
 	import { onMount } from 'svelte';
 	
+	import 'reveal.js/dist/reset.css';
 	import 'reveal.js/dist/reveal.css';
-	import 'reveal.js/dist/theme/white.css';
 
 	export let options: Reveal.Options = {};
 	export let reveal: Reveal.Api | undefined = undefined;
