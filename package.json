@@ -1,6 +1,6 @@
 {
 	"name": "svelte-reveal.js",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Reveal.js Svelte wrapper",
 	"repository": {
 		"type": "git",
@@ -13,7 +13,7 @@
 		"build": "vite build",
 		"preview": "vite preview --open --host",
 		"copy:plugins": "mkdir package/plugins && cp node_modules/reveal.js/plugin/**/*.esm.js package/plugins -r",
-		"copy:themes": "mkdir package/theme && cp node_modules/reveal.js/dist/theme package/theme -r",
+		"copy:themes": "cp node_modules/reveal.js/dist/theme package -r",
 		"package": "svelte-kit sync && svelte-package && pnpm copy:plugins && pnpm copy:themes",
 		"prepublishOnly": "echo 'Did you mean to publish `./package/`, instead of `./`?' && exit 1",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
