@@ -12,7 +12,6 @@ specifiers:
   eslint-plugin-svelte3: ^4.0.0
   prettier: ^2.8.0
   prettier-plugin-svelte: ^2.8.1
-  reveal.js: ^4.4.0
   svelte: ^3.54.0
   svelte-check: ^3.0.1
   tslib: ^2.4.1
@@ -20,14 +19,11 @@ specifiers:
   vite: ^4.0.0
   vite-plugin-static-copy: ^0.13.0
 
-dependencies:
-  '@types/reveal.js': 4.4.1
-  reveal.js: 4.4.0
-
 devDependencies:
   '@sveltejs/adapter-auto': 2.0.0_@sveltejs+kit@1.5.0
   '@sveltejs/kit': 1.5.0_svelte@3.55.1+vite@4.1.1
   '@sveltejs/package': 1.0.2_4x7phaipmicbaooxtnresslofa
+  '@types/reveal.js': 4.4.1
   '@typescript-eslint/eslint-plugin': 5.51.0_b635kmla6dsb4frxfihkw4m47e
   '@typescript-eslint/parser': 5.51.0_4vsywjlpuriuw3tl5oq6zy5a64
   eslint: 8.33.0
@@ -410,7 +406,7 @@ packages:
 
   /@types/reveal.js/4.4.1:
     resolution: {integrity: sha512-oMcIAaP9rFCODHdGC2RM71cbBGOPc4prolkPEN98LUQm9b64ePjNpD/Fb2b/oep2w0XDN4aYCdUmip6kuLEJBg==}
-    dev: false
+    dev: true
 
   /@types/sass/1.43.1:
     resolution: {integrity: sha512-BPdoIt1lfJ6B7rw35ncdwBZrAssjcwzI5LByIrYs+tpXlj/CAkuVdRsgZDdP4lq5EjyWzwxZCqAoFyHKFwp32g==}
@@ -1459,11 +1455,6 @@ packages:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
     dev: true
-
-  /reveal.js/4.4.0:
-    resolution: {integrity: sha512-jIV6C9V2NEUjGzU8L6dUFGpk1KJmq7/EzP2fOW67ggc2c0Cp/PdprWxZ9Qgp46F0T2ZWDCjQ1p3Ytzy5jA6a2w==}
-    engines: {node: '>=10.0.0'}
-    dev: false
 
   /rimraf/2.7.1:
     resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==}
