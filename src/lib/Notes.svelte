@@ -1,5 +1,5 @@
 <!--
-    Should be used with the note plugin 
+    !! This component requires the note plugin 
     see https://revealjs.com/speaker-view/
 -->
 

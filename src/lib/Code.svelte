@@ -1,7 +1,12 @@
 <script lang="ts">
-	export let trim: string;
-	export let noescape: string;
-	export let lineNumbers: string;
+	/**
+	 * !! this component requires the highlight plugin
+     * see https://revealjs.com/code/
+	 */
+
+	export let trim: boolean;
+	export let noescape: boolean;
+	export let lineNumbers: boolean;
 	export let lineStartFrom: string;
 </script>
 
