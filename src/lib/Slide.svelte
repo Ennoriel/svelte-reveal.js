@@ -1,5 +1,6 @@
 <script lang="ts">
 	export let autoAnimate: boolean | undefined = undefined;
+	export let autoAnimateEasing: string | undefined = undefined;
 	export let autoAnimateId: string | undefined = undefined;
 	export let autoAnimateRestart: boolean | undefined = undefined;
 	export let autoslide: number | undefined = undefined;
@@ -18,18 +19,22 @@
 	export let backgroundVideoLoop: string | undefined = undefined;
 	export let backgroundVideoMuted: string | undefined = undefined;
 	export let charset: string | undefined = undefined;
-	export let markdown: string | undefined = undefined;
+	export let id: string | undefined = undefined;
+	export let markdown: boolean | string | undefined = undefined;
 	export let notes: string | undefined = undefined;
 	export let separator: string | undefined = undefined;
 	export let separatorNotes: string | undefined = undefined;
 	export let separatorVertical: string | undefined = undefined;
+	export let state: string | undefined = undefined;
 	export let timing: number | undefined = undefined;
+	export let transition: 'fade' | 'slide' | 'convex' | 'concave' | 'zoom' | undefined = undefined;
 	export let transitionSpeed: 'slow' | 'fast' | undefined = undefined;
 	export let visibility: 'hidden' | undefined = undefined;
 </script>
 
 <section
 	data-auto-animate={autoAnimate}
+	data-auto-animate-easing={autoAnimateEasing}
 	data-auto-animate-id={autoAnimateId}
 	data-auto-animate-restart={autoAnimateRestart}
 	data-autoslide={autoslide}
@@ -48,12 +53,15 @@
 	data-background-video-loop={backgroundVideoLoop}
 	data-background-video-muted={backgroundVideoMuted}
 	data-charset={charset}
-	data-markdown={markdown}
+	data-id={id}
+	data-markdown={typeof markdown === 'boolean' && markdown ? '' : markdown}
 	data-notes={notes}
 	data-separator={separator}
 	data-separator-notes={separatorNotes}
 	data-separator-vertical={separatorVertical}
+	{state}
 	data-timing={timing}
+	data-transition={transition}
 	data-transition-speed={transitionSpeed}
 	data-visibility={visibility}
 >

@@ -1,6 +1,6 @@
 {
 	"name": "svelte-reveal.js",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"description": "Reveal.js Svelte wrapper",
 	"repository": {
 		"type": "git",
@@ -38,7 +38,7 @@
 		"vite": "^4.0.0",
 		"vite-plugin-static-copy": "^0.13.0"
 	},
-	"peerDependencies": {
+	"dependencies": {
 		"reveal.js": "^4.4.0"
 	},
 	"type": "module"

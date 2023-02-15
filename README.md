@@ -112,6 +112,7 @@ The component `<Slide>` displays a slide. This is the base building block of rev
 All `data-attributes` used by reveal.js have been exposed as Svelte props:
 
 - **autoAnimate**: data-auto-animate, `boolean`
+- **autoAnimateEasing**: data-auto-animate-easing, `string`
 - **autoAnimateId**: data-auto-animate-id, `string`
 - **autoAnimateRestart**: data-auto-animate-restart, `boolean`
 - **autoslide**: data-autoslide, `number`
@@ -130,12 +131,15 @@ All `data-attributes` used by reveal.js have been exposed as Svelte props:
 - **backgroundVideoLoop**: data-background-video-loop, `string`
 - **backgroundVideoMuted**: data-background-video-muted, `string`
 - **charset**: data-charset, `string`
-- **markdown**: data-markdown, `string`
+- **id:**: data-id, `string`
+- **markdown**: data-markdown, `boolean | string`
 - **notes**: data-notes, `string`
 - **separator**: data-separator, `string`
 - **separatorNotes**: data-separator-notes, `string`
 - **separatorVertical**: data-separator-vertical, `string`
+- **state**: state, `string`
 - **timing**: data-timing, `number`
+- **transition**: data-transition, `'fade' | 'slide' | 'convex' | 'concave' | 'zoom'`
 - **transitionSpeed**: data-transition-speed, `"slow" | "fast"`
 - **visibility**: data-visibility, `"hidden"`
 
@@ -154,7 +158,9 @@ All `data-attributes` used by reveal.js have been exposed as Svelte props:
 
 **code props:**
 
-- **lineNumbers:**: data-line-numbers, `boolean`
+- **contenteditable**: contenteditable, `string`
+- **language**: set as a classname, `string`
+- **lineNumbers:**: data-line-numbers, `boolean | string`
 - **lineStartFrom:**: data-ln-start-from, `string`
 - **noescape:**: data-noescape, `boolean`
 - **trim:**: data-trim, `boolean`
