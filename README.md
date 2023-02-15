@@ -4,6 +4,8 @@
 
 If you want to port this library to another framework, I'd be glad to convert this repo to a monorepo to make the maintenance easier.
 
+reveal.js is a window based library and is not SSR friendly. Though, it still works with static rendering!
+
 ## Installation
 
 Install svelte-reveal.js with your favorite package manager
@@ -22,13 +24,15 @@ pnpm i -D svelte-reveal.js
 # yarn
 yarn add --dev mdsvex
 ```
-    
+
 ## Usage
 
 ```sv
 <script>
 	import { RevealJsContext, Slide } from 'svelte-reveal.js';
 
+	import 'reveal.js/dist/reset.css';
+	import 'reveal.js/dist/reveal.css';
 	import 'reveal.js/dist/theme/white.css';
 </script>
 
@@ -40,7 +44,6 @@ yarn add --dev mdsvex
 		</Slide>
 	</RevealJsContext>
 </div>
-
 ```
 
 ## API Reference
@@ -49,9 +52,9 @@ yarn add --dev mdsvex
 
 The component `<RevealJsContext>` loads reveal.js and initialize a Reveal context.
 
-| Props | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `options` | `Reveal.Options` | *optional* — reveal.js options. See the [official documentation](https://revealjs.com/config/) and the [typescript source code](https://github.com/kwatanwa17/DefinitelyTyped/blob/master/types/reveal.js/index.d.ts). |
+| Props     | Type             | Description                                                                                                                                                                                                            |
+| :-------- | :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `options` | `Reveal.Options` | _optional_ — reveal.js options. See the [official documentation](https://revealjs.com/config/) and the [typescript source code](https://github.com/kwatanwa17/DefinitelyTyped/blob/master/types/reveal.js/index.d.ts). |
 
 To load specific reveal.js plugins, you need to dynamically import them in an onMount function.
 
@@ -65,7 +68,7 @@ To load specific reveal.js plugins, you need to dynamically import them in an on
 	import 'reveal.js/plugin/highlight/monokai.css';
 
 	let plugins: Reveal.PluginFunction[];
-	
+
 	onMount(async () => {
 		plugins = [
 			await import('reveal.js/plugin/highlight/highlight').then(res => res.default)
@@ -88,43 +91,75 @@ To load specific reveal.js plugins, you need to dynamically import them in an on
 {/if}
 ```
 
+Some css themes exposed by reveal.js and can be imported with `import 'reveal.js/dist/theme/black.css';`:
+
+- black.css
+- beige.css
+- blood.css
+- league.css
+- night.css
+- moon.css
+- sky.css
+- simple.css
+- serif.css
+- solarized.css
+- white.css
+
 ### Slide
 
 The component `<Slide>` displays a slide. This is the base building block of reveal.js.
 
-| Props | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| trim | boolean | removes surrounding whitespace within the <code> |
-| noescape | boolean | disable the HTML escapement |
-| lineNumbers | boolean | string | Enable line numbers. If you want to highlight specific lines you can provide a comma separated list. You can step through multiple code highlights on the same code block. Delimit each of your highlight steps with the | character. |
-| lineStartFrom | string | offset the line number |
+All `data-attributes` used by reveal.js have been exposed as Svelte props:
 
-| `options` | `Reveal.Options` | *optional* — reveal.js options. See the [official documentation](https://revealjs.com/config/) and the [typescript source code](https://github.com/kwatanwa17/DefinitelyTyped/blob/master/types/reveal.js/index.d.ts). |
-
-```sv
-<Code>
-	{@html `
-<script>
-	let name = 'world';
-</script>
-
-<h1>Hello {name}!</h1>
-	`}	
-</Code>
-```
+- **autoAnimate**: data-auto-animate, `boolean`
+- **autoAnimateId**: data-auto-animate-id, `string`
+- **autoAnimateRestart**: data-auto-animate-restart, `boolean`
+- **autoslide**: data-autoslide, `number`
+- **background**: data-background, `string`
+- **backgroundColor**: data-background-color, `string`
+- **backgroundGradient**: data-background-gradient, `string`
+- **backgroundIframe**: data-background-iframe, `string`
+- **backgroundImage**: data-background-image, `string`
+- **backgroundInteractive**: data-background-interactive , `boolean`
+- **backgroundOpacity**: data-background-opacity, `string`
+- **backgroundPosition**: data-background-position, `string`
+- **backgroundRepeat**: data-background-repeat, `string`
+- **backgroundSize**: data-background-size, `string`
+- **backgroundTransition**: data-background-transition, `string`
+- **backgroundVideo**: data-background-video, `string`
+- **backgroundVideoLoop**: data-background-video-loop, `string`
+- **backgroundVideoMuted**: data-background-video-muted, `string`
+- **charset**: data-charset, `string`
+- **markdown**: data-markdown, `string`
+- **notes**: data-notes, `string`
+- **separator**: data-separator, `string`
+- **separatorNotes**: data-separator-notes, `string`
+- **separatorVertical**: data-separator-vertical, `string`
+- **timing**: data-timing, `number`
+- **transitionSpeed**: data-transition-speed, `"slow" | "fast"`
+- **visibility**: data-visibility, `"hidden"`
 
 ### Code
 
-The component `<Code>` displays a block of code. This component requires the `highlight` plugin. See the [official documentation about Code](https://revealjs.com/code/). 
+The component `<Code>` displays a block of code. This component requires the `highlight` plugin. See the [official documentation about Code](https://revealjs.com/code/).
 
-| Props | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| trim | boolean | removes surrounding whitespace within the <code> |
-| noescape | boolean | disable the HTML escapement |
-| lineNumbers | boolean | string | Enable line numbers. If you want to highlight specific lines you can provide a comma separated list. You can step through multiple code highlights on the same code block. Delimit each of your highlight steps with the | character. |
-| lineStartFrom | string | offset the line number |
+All `data-attributes` used by reveal.js have been exposed as Svelte props:
 
-| `options` | `Reveal.Options` | *optional* — reveal.js options. See the [official documentation](https://revealjs.com/config/) and the [typescript source code](https://github.com/kwatanwa17/DefinitelyTyped/blob/master/types/reveal.js/index.d.ts). |
+**fragment props**:
+
+- **fragment:**: fragment class, `boolean`
+- **autoslide:**: data-auotslide, `number`
+- **id:**: data-id, `string`
+- **fragmentIndex:**: data-fragment-index, `number`
+
+**code props:**
+
+- **lineNumbers:**: data-line-numbers, `boolean`
+- **lineStartFrom:**: data-ln-start-from, `string`
+- **noescape:**: data-noescape, `boolean`
+- **trim:**: data-trim, `boolean`
+
+Write the code with a line return, starting with a raw indentation:
 
 ```sv
 <Code>
@@ -134,7 +169,7 @@ The component `<Code>` displays a block of code. This component requires the `hi
 </script>
 
 <h1>Hello {name}!</h1>
-	`}	
+	`}
 </Code>
 ```
 
@@ -142,7 +177,7 @@ The component `<Code>` displays a block of code. This component requires the `hi
 
 The component `<Notes>` allows you to write a side note that will only be displayed in the speaker view. This component requires the `note` plugin. See the [official documentation about Speaker view](https://revealjs.com/speaker-view/).
 
-There is no props to this component
+There is no props for this component.
 
 ```sv
 <Notes>
@@ -150,6 +185,8 @@ There is no props to this component
 </Notes>
 ```
 
+Alternatively, you can also use the `Slide` `notes` props to define a note.
+
 ## Acknowledgements
 
- - [svelte-slides](https://github.com/rajasegar/svelte-slides) is a template if you want to use reveal.js I was inspired from.
+- [svelte-slides](https://github.com/rajasegar/svelte-slides) is a template for using reveal.js I was inspired by.
