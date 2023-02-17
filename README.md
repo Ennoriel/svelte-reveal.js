@@ -12,17 +12,17 @@ Install svelte-reveal.js with your favorite package manager
 
 ```bash
 # npm
-npm i -D svelte-reveal.js
+npm i -D svelte-reveal.js reveal.js
 ```
 
 ```bash
 # pnpm
-pnpm i -D svelte-reveal.js
+pnpm i -D svelte-reveal.js reveal.js
 ```
 
 ```bash
 # yarn
-yarn add --dev mdsvex
+yarn add --dev svelte-reveal.js reveal.js
 ```
 
 ## Usage
@@ -56,7 +56,9 @@ The component `<RevealJsContext>` loads reveal.js and initialize a Reveal contex
 | :-------- | :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `options` | `Reveal.Options` | _optional_ — reveal.js options. See the [official documentation](https://revealjs.com/config/) and the [typescript source code](https://github.com/kwatanwa17/DefinitelyTyped/blob/master/types/reveal.js/index.d.ts). |
 
-To load specific reveal.js plugins, you need to dynamically import them in an onMount function.
+If you want a specific route for each slide, do provide the option `{ hash: true }` and make sure that your presentation is wrapped in a `/[...slug]/+page.svelte` folder to unsure the page being redirected to your presentation.
+
+To load specific reveal.js plugins, you need to dynamically import them in an onMount function:
 
 ```sv
 <script lang="ts">
