@@ -1,6 +1,6 @@
 {
 	"name": "svelte-reveal.js",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"description": "Reveal.js Svelte wrapper",
 	"repository": {
 		"type": "git",
