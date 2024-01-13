@@ -1,19 +1,33 @@
 <script lang="ts">
 	import type Reveal from 'reveal.js';
 	import { onMount } from 'svelte';
+	import type { Plugin, Theme } from './imports.js';
 
 	import 'reveal.js/dist/reset.css';
 	import 'reveal.js/dist/reveal.css';
 
 	export let options: Reveal.Options = {};
 	export let reveal: Reveal.Api | undefined = undefined;
+	export let plugins: Array<Plugin> = [];
+	export let themes: Array<Theme>;
 	export let loaded = false;
 
-	let RevealJs: typeof Reveal;
+	function getDefault<T>(i: { default: T }) {
+		return i.default;
+	}
 
 	onMount(async () => {
-		RevealJs = await import('reveal.js/dist/reveal.esm').then((res) => res.default);
-		reveal = new RevealJs(options);
+		const [RevealJs, revealPlugins] = await Promise.all([
+			import('reveal.js/dist/reveal.esm').then(getDefault),
+			Promise.all(plugins.map((p) => p())).then((res) => res.map(getDefault)),
+			Promise.all(themes.map((t) => t()))
+		]);
+
+		reveal = new RevealJs({
+			...options,
+			plugins: revealPlugins
+		});
+
 		reveal.initialize().then(() => (loaded = true));
 	});
 </script>
@@ -23,3 +37,10 @@
 		<slot />
 	</div>
 </div>
+
+<style>
+	.reveal {
+		width: var(--reveal-width, 100%);
+		height: var(--reveal-height, 100vh);
+	}
+</style>
