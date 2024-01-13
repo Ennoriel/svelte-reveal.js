@@ -55,8 +55,8 @@ The component `<RevealJsContext>` loads reveal.js and initialize a Reveal contex
 | Props     | Type             | Description                                                                                                                                                                                                            |
 | :-------- | :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `options` | `Reveal.Options` | _optional_ — reveal.js options. See the [official documentation](https://revealjs.com/config/) and the [typescript source code](https://github.com/kwatanwa17/DefinitelyTyped/blob/master/types/reveal.js/index.d.ts). |
-| `reveal` | `Reveal.Api` | bindable — reveal.js presentation object. |
-| `loaded` | `boolean` | bindable — false by default and turns true when the presentation is loaded. Can be used to display  a loading screen |
+| `reveal`  | `Reveal.Api`     | bindable — reveal.js presentation object.                                                                                                                                                                              |
+| `loaded`  | `boolean`        | bindable — false by default and turns true when the presentation is loaded. Can be used to display a loading screen                                                                                                    |
 
 If you want a specific route for each slide, do provide the option `{ hash: true }` and make sure that your presentation is wrapped in a `/[...slug]/+page.svelte` folder to unsure the page being redirected to your presentation.
 

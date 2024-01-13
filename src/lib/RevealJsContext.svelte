@@ -14,7 +14,7 @@
 	onMount(async () => {
 		RevealJs = await import('reveal.js/dist/reveal.esm').then((res) => res.default);
 		reveal = new RevealJs(options);
-		reveal.initialize().then(() => loaded = true);
+		reveal.initialize().then(() => (loaded = true));
 	});
 </script>
 
