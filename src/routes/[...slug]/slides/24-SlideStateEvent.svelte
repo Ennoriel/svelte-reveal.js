@@ -10,6 +10,7 @@
 		> name.
 	</p>
 	<Code trim language="javascript" contenteditable>
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		{@html `
 Reveal.on( 'customevent', function() {
 console.log( '"customevent" has fired' );

@@ -8,7 +8,11 @@
 		Different background transitions are available via the backgroundTransition option. This one's
 		called "zoom".
 	</p>
-	<Code language="javascript">{@html `Reveal.configure({ backgroundTransition: 'zoom' })`}</Code>
+
+	<Code language="javascript">
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+		{@html `Reveal.configure({ backgroundTransition: 'zoom' })`}
+	</Code>
 </Slide>
 
 <Slide transition="slide" background="#b5533c" backgroundTransition="zoom">

@@ -5,6 +5,7 @@
 <Slide autoAnimate>
 	<h2 id="code-title">Even Prettier Animations</h2>
 	<Code id="code-animation" trim lineNumbers="|4,8-11|17|22-24" language="javascript">
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		{@html `
 import React, { useState } from 'react';
 
