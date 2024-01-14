@@ -1,6 +1,8 @@
 # svelte-reveal.js
 
-> svelte-reveal.js is a [reveal.js](https://revealjs.com/) wrapper for [Svelte](https://svelte.dev/).
+> svelte-reveal.js is a very convinient [reveal.js](https://revealjs.com/) wrapper for [Svelte](https://svelte.dev/).
+
+You can see a demonstration of the [default reveal.js presentation](https://svelte-reveal-js.vercel.app/) using Svelte, SvelteKit and svelte-reveal.js.
 
 If you want to port this library to another framework, I'd be glad to convert this repo to a monorepo to make the maintenance easier.
 
@@ -29,21 +31,14 @@ yarn add --dev svelte-reveal.js reveal.js
 
 ```sv
 <script>
-	import { RevealJsContext, Slide } from 'svelte-reveal.js';
-
-	import 'reveal.js/dist/reset.css';
-	import 'reveal.js/dist/reveal.css';
-	import 'reveal.js/dist/theme/white.css';
+	import { RevealJsContext, Slide, white } from 'svelte-reveal.js';
 </script>
 
-<!-- a container with fixed size is required -->
-<div style:width="100%" style:height="100vh">
-	<RevealJsContext>
-		<Slide>
-			<h1>Hello world!</h1>
-		</Slide>
-	</RevealJsContext>
-</div>
+<RevealJsContext themes={[white]}>
+	<Slide>
+		<h1>Hello world!</h1>
+	</Slide>
+</RevealJsContext>
 ```
 
 ## API Reference
@@ -52,32 +47,21 @@ yarn add --dev svelte-reveal.js reveal.js
 
 The component `<RevealJsContext>` loads reveal.js and initialize a Reveal context.
 
-| Props     | Type             | Description                                                                                                                                                                                                            |
-| :-------- | :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `options` | `Reveal.Options` | _optional_ — reveal.js options. See the [official documentation](https://revealjs.com/config/) and the [typescript source code](https://github.com/kwatanwa17/DefinitelyTyped/blob/master/types/reveal.js/index.d.ts). |
-| `reveal`  | `Reveal.Api`     | bindable — reveal.js presentation object.                                                                                                                                                                              |
-| `loaded`  | `boolean`        | bindable — false by default and turns true when the presentation is loaded. Can be used to display a loading screen                                                                                                    |
+| Props     | Type             | Description                                                                                                                                                                                                                                                                                                             |
+| :-------- | :--------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `options` | `Reveal.Options` | _optional_ — reveal.js options. See the [official documentation](https://revealjs.com/config/) and the [typescript source code](https://github.com/kwatanwa17/DefinitelyTyped/blob/master/types/reveal.js/index.d.ts). Do not pass plugins through this props, they would be overriden. Use the `plugins` props instead |
+| `reveal`  | `Reveal.Api`     | bindable — reveal.js presentation object.                                                                                                                                                                                                                                                                               |
+| `loaded`  | `boolean`        | bindable — false by default and turns true when the presentation is loaded. Can be used to display a loading screen                                                                                                                                                                                                     |
 
-If you want a specific route for each slide, do provide the option `{ hash: true }` and make sure that your presentation is wrapped in a `/[...slug]/+page.svelte` folder to unsure the page being redirected to your presentation.
+If you want a specific route for each slide, do provide the option `{ hash: true }` and make sure that your presentation is wrapped in a `/[...slug]/+page.svelte` folder to ensure the page is being redirected to your presentation.
 
-To load specific reveal.js plugins, you need to dynamically import them in an onMount function:
+#### Plugins
+
+To load aspecific reveal.js plugin, import it from the library and pass it in the `plugins` props:
 
 ```sv
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { RevealJsContext } from 'svelte-reveal.js';
-	import type Reveal from 'reveal.js';
-
-	// The highlight plugin requires a stylesheet
-	import 'reveal.js/plugin/highlight/monokai.css';
-
-	let plugins: Reveal.PluginFunction[];
-
-	onMount(async () => {
-		plugins = [
-			await import('reveal.js/plugin/highlight/highlight').then(res => res.default)
-		]
-	})
+	import { RevealJsContext, markdown, white } from 'svelte-reveal.js';
 </script>
 
 {#if plugins}
@@ -87,27 +71,24 @@ To load specific reveal.js plugins, you need to dynamically import them in an on
 			progress: true,
 			center: true,
 			hash: true,
-			plugins
 		}}
+		plugins={[markdown]}
+		themes={[white]}
 	>
 		...
 	</RevealJsContext>
 {/if}
 ```
 
-Some css themes exposed by reveal.js and can be imported with `import 'reveal.js/dist/theme/black.css';`:
+The available plugins are: `highlight` (code blocks), `markdown`, `search`, `notes`, `math` and `zoom`. Learn more [in the official documentation](https://revealjs.com/plugins/#built-in-plugins).
 
-- black.css
-- beige.css
-- blood.css
-- league.css
-- night.css
-- moon.css
-- sky.css
-- simple.css
-- serif.css
-- solarized.css
-- white.css
+**You need an extra theme for the highlight plugin. Two of which are exported by this library.**
+
+#### Themes
+
+To load a built-in theme, import it from the library and pass it in the `themes` props.
+
+The available themes are: `black`, `beige`, `blood`, `league`, `night`, `moon`, `sky`, `simple`, `serif`, `solarized` and `white`
 
 ### Slide
 
@@ -150,6 +131,8 @@ All `data-attributes` used by reveal.js have been exposed as Svelte props:
 ### Code
 
 The component `<Code>` displays a block of code. This component requires the `highlight` plugin. See the [official documentation about Code](https://revealjs.com/code/).
+
+**You need an extra theme for the highlight plugin. Two of which are exported by this library.**
 
 All `data-attributes` used by reveal.js have been exposed as Svelte props:
 
