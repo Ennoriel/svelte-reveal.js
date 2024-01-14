@@ -59,7 +59,7 @@
 	data-separator={separator}
 	data-separator-notes={separatorNotes}
 	data-separator-vertical={separatorVertical}
-	{state}
+	data-state={state}
 	data-timing={timing}
 	data-transition={transition}
 	data-transition-speed={transitionSpeed}
