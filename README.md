@@ -31,10 +31,13 @@ yarn add --dev svelte-reveal.js reveal.js
 
 ```sv
 <script>
-	import { RevealJsContext, Slide, white } from 'svelte-reveal.js';
+	import { RevealJsContext, Slide, white, SvelteRevealHMR } from 'svelte-reveal.js';
 </script>
 
 <RevealJsContext themes={[white]}>
+	<!-- use SvelteRevealHMR in dev to enable hot module reloading -->
+	<SvelteRevealHMR />
+
 	<Slide>
 		<h1>Hello world!</h1>
 	</Slide>
@@ -179,6 +182,10 @@ There is no props for this component.
 ```
 
 Alternatively, you can also use the `Slide` `notes` props to define a note.
+
+### SvelteRevealHMR
+
+The component `<SvelteRevealHMR>` enables hot module reloading (HMR) in dev on your presentation. It's not working by default because Reveal.js adds classes to the DOM that Svelte isn't aware of and cleans up when it performs HMR.
 
 ## Acknowledgements
 

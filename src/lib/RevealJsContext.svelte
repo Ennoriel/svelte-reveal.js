@@ -5,6 +5,7 @@
 
 	import 'reveal.js/dist/reset.css';
 	import 'reveal.js/dist/reveal.css';
+	import { revealStore } from './store.js';
 
 	export let options: Reveal.Options = {};
 	export let reveal: Reveal.Api | undefined = undefined;
@@ -27,6 +28,8 @@
 			...options,
 			plugins: revealPlugins
 		});
+
+		$revealStore = reveal;
 
 		reveal.initialize().then(() => (loaded = true));
 	});

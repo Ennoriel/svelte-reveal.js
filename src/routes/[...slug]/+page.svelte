@@ -1,9 +1,16 @@
 <script lang="ts">
-	import { RevealJsContext, black, monokai, highlight, markdown, notes } from '$lib';
+	import {
+		RevealJsContext,
+		SvelteRevealHMR,
+		black,
+		monokai,
+		highlight,
+		markdown,
+		notes
+	} from '$lib';
 	import * as Slide from './slides';
 </script>
 
-<!-- a container with fixed size is required -->
 <RevealJsContext
 	options={{
 		controls: true,
@@ -14,6 +21,10 @@
 	plugins={[highlight, markdown, notes]}
 	themes={[black, monokai]}
 >
+	<!-- use this only in dev -->
+	<!-- if you forget it, it's not a big deal though -->
+	<SvelteRevealHMR />
+
 	<Slide.Title />
 	<Slide.Description />
 	<Slide.Vertical />
