@@ -3,19 +3,43 @@
     see https://revealjs.com/code/
 -->
 <script lang="ts">
-	/* fragment props */
-	export let fragment: boolean | undefined = undefined;
-	export let autoslide: number | undefined = undefined;
-	export let id: string | undefined = undefined;
-	export let fragmentIndex: number | undefined = undefined;
+	interface Props {
+		/* fragment props */
+		fragment?: boolean | undefined;
+		autoslide?: number | undefined;
+		id?: string | undefined;
+		fragmentIndex?: number | undefined;
 
-	/* code props */
-	export let contenteditable: boolean | undefined = undefined;
-	export let language: string | undefined = undefined;
-	export let lineNumbers: boolean | string | undefined = undefined;
-	export let lineStartFrom: string | undefined = undefined;
-	export let noescape: boolean | undefined = undefined;
-	export let trim: boolean | undefined = undefined;
+		/* code props */
+		contenteditable?: boolean | undefined;
+		language?: string | undefined;
+		lineNumbers?: boolean | string | undefined;
+		lineStartFrom?: string | undefined;
+		noescape?: boolean | undefined;
+		trim?: boolean | undefined;
+
+		/** children */
+		children: import('svelte').Snippet;
+	}
+
+	const {
+		/* fragment props */
+		fragment,
+		autoslide,
+		id,
+		fragmentIndex,
+
+		/* code props */
+		contenteditable,
+		language,
+		lineNumbers,
+		lineStartFrom,
+		noescape,
+		trim,
+
+		/** children */
+		children
+	}: Props = $props();
 </script>
 
 <pre class:fragment data-auotslide={autoslide} data-id={id} data-fragment-index={fragmentIndex}>
@@ -26,6 +50,6 @@
 		data-trim={trim}
 		class={language}
 		{contenteditable}>
-        <slot />
+		{@render children()}
     </code>
 </pre>

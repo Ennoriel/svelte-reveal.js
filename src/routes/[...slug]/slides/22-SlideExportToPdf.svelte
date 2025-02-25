@@ -19,5 +19,5 @@
 		style="border:3px solid #666; margin-bottom:5px; max-width: 100%;"
 		allowfullscreen
 		title="reveal.js presentation integrated with a iframe on slideshare"
-	/>
+	></iframe>
 </Slide>

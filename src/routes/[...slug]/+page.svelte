@@ -8,7 +8,7 @@
 		markdown,
 		notes
 	} from '$lib';
-	import * as Slide from './slides';
+	import * as Slide from './slides/index.js';
 </script>
 
 <RevealJsContext

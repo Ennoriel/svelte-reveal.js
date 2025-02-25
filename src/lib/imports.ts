@@ -3,6 +3,7 @@ export type Theme = () => Promise<{
 }>;
 
 export const black: Theme = () => import('reveal.js/dist/theme/black.css');
+export const blackContrast: Theme = () => import('reveal.js/dist/theme/black-contrast.css');
 export const beige: Theme = () => import('reveal.js/dist/theme/beige.css');
 export const blood: Theme = () => import('reveal.js/dist/theme/blood.css');
 export const league: Theme = () => import('reveal.js/dist/theme/league.css');
@@ -13,6 +14,7 @@ export const simple: Theme = () => import('reveal.js/dist/theme/simple.css');
 export const serif: Theme = () => import('reveal.js/dist/theme/serif.css');
 export const solarized: Theme = () => import('reveal.js/dist/theme/solarized.css');
 export const white: Theme = () => import('reveal.js/dist/theme/white.css');
+export const whiteContrast: Theme = () => import('reveal.js/dist/theme/white-contrast.css');
 
 export const monokai: Theme = () => import('reveal.js/plugin/highlight/monokai.css');
 export const zenburn: Theme = () => import('reveal.js/plugin/highlight/zenburn.css');

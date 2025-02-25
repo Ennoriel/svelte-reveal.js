@@ -3,18 +3,18 @@
 </script>
 
 <Slide markdown>
-	<script type="text/template">
+	<pre data-template>
 ## Markdown support
 
 Write content using inline or external Markdown.
 Instructions and more info available in the [readme](https://revealjs.com/markdown/).
 
 ```html []
-<Slide markdown>
+&lt;Slide markdown&gt;
 ## Markdown support
 Write content using inline or external Markdown.
 Instructions and more info available in the [readme](https://revealjs.com/markdown/).
-</Slide>
+&lt;/Slide&gt;
 ```
-	</script>
+	</pre>
 </Slide>

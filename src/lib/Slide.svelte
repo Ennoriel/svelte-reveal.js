@@ -1,35 +1,77 @@
 <script lang="ts">
-	export let autoAnimate: boolean | undefined = undefined;
-	export let autoAnimateEasing: string | undefined = undefined;
-	export let autoAnimateId: string | undefined = undefined;
-	export let autoAnimateRestart: boolean | undefined = undefined;
-	export let autoslide: number | undefined = undefined;
-	export let background: string | undefined = undefined;
-	export let backgroundColor: string | undefined = undefined;
-	export let backgroundGradient: string | undefined = undefined;
-	export let backgroundIframe: string | undefined = undefined;
-	export let backgroundImage: string | undefined = undefined;
-	export let backgroundInteractive: boolean | undefined = undefined;
-	export let backgroundOpacity: string | undefined = undefined;
-	export let backgroundPosition: string | undefined = undefined;
-	export let backgroundRepeat: string | undefined = undefined;
-	export let backgroundSize: string | undefined = undefined;
-	export let backgroundTransition: string | undefined = undefined;
-	export let backgroundVideo: string | undefined = undefined;
-	export let backgroundVideoLoop: string | undefined = undefined;
-	export let backgroundVideoMuted: string | undefined = undefined;
-	export let charset: string | undefined = undefined;
-	export let id: string | undefined = undefined;
-	export let markdown: boolean | string | undefined = undefined;
-	export let notes: string | undefined = undefined;
-	export let separator: string | undefined = undefined;
-	export let separatorNotes: string | undefined = undefined;
-	export let separatorVertical: string | undefined = undefined;
-	export let state: string | undefined = undefined;
-	export let timing: number | undefined = undefined;
-	export let transition: 'fade' | 'slide' | 'convex' | 'concave' | 'zoom' | undefined = undefined;
-	export let transitionSpeed: 'slow' | 'fast' | undefined = undefined;
-	export let visibility: 'hidden' | undefined = undefined;
+	interface Props {
+		autoAnimate?: boolean | undefined;
+		autoAnimateEasing?: string | undefined;
+		autoAnimateId?: string | undefined;
+		autoAnimateRestart?: boolean | undefined;
+		autoslide?: number | undefined;
+		background?: string | undefined;
+		backgroundColor?: string | undefined;
+		backgroundGradient?: string | undefined;
+		backgroundIframe?: string | undefined;
+		backgroundImage?: string | undefined;
+		backgroundInteractive?: boolean | undefined;
+		backgroundOpacity?: string | undefined;
+		backgroundPosition?: string | undefined;
+		backgroundRepeat?: string | undefined;
+		backgroundSize?: string | undefined;
+		backgroundTransition?: string | undefined;
+		backgroundVideo?: string | undefined;
+		backgroundVideoLoop?: string | undefined;
+		backgroundVideoMuted?: string | undefined;
+		charset?: string | undefined;
+		id?: string | undefined;
+		markdown?: boolean | string | undefined;
+		notes?: string | undefined;
+		separator?: string | undefined;
+		separatorNotes?: string | undefined;
+		separatorVertical?: string | undefined;
+		state?: string | undefined;
+		timing?: number | undefined;
+		transition?: 'fade' | 'slide' | 'convex' | 'concave' | 'zoom' | undefined;
+		transitionSpeed?: 'slow' | 'fast' | undefined;
+		visibility?: 'hidden' | undefined;
+
+		/** children */
+		children: import('svelte').Snippet;
+	}
+
+	const {
+		autoAnimate,
+		autoAnimateEasing,
+		autoAnimateId,
+		autoAnimateRestart,
+		autoslide,
+		background,
+		backgroundColor,
+		backgroundGradient,
+		backgroundIframe,
+		backgroundImage,
+		backgroundInteractive,
+		backgroundOpacity,
+		backgroundPosition,
+		backgroundRepeat,
+		backgroundSize,
+		backgroundTransition,
+		backgroundVideo,
+		backgroundVideoLoop,
+		backgroundVideoMuted,
+		charset,
+		id,
+		markdown,
+		notes,
+		separator,
+		separatorNotes,
+		separatorVertical,
+		state,
+		timing,
+		transition,
+		transitionSpeed,
+		visibility,
+
+		/** children */
+		children
+	}: Props = $props();
 </script>
 
 <section
@@ -65,5 +107,5 @@
 	data-transition-speed={transitionSpeed}
 	data-visibility={visibility}
 >
-	<slot />
+	{@render children()}
 </section>

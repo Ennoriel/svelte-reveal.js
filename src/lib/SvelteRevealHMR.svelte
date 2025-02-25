@@ -5,7 +5,10 @@
 	onMount(() => {
 		if (import.meta.hot) {
 			import.meta.hot.on('vite:afterUpdate', async () => {
-				if ($revealStore) $revealStore.slide();
+				console.log('!!!', $revealStore?.slide);
+				$revealStore?.slide();
+				$revealStore?.sync();
+				if ($revealStore) $revealStore.syncSlide($revealStore.getCurrentSlide());
 			});
 		}
 	});

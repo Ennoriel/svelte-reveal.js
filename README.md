@@ -8,6 +8,8 @@ If you want to port this library to another framework, I'd be glad to convert th
 
 reveal.js is a window based library and is not SSR friendly. Though, it still works with static rendering!
 
+Please, use v1 for Svelte 3 and 4 and v2 for Svelte 5.
+
 ## Installation
 
 Install svelte-reveal.js with your favorite package manager
@@ -29,12 +31,12 @@ yarn add --dev svelte-reveal.js reveal.js
 
 ## Usage
 
-```sv
+```html
 <script>
-	import { RevealJsContext, Slide, white, SvelteRevealHMR } from 'svelte-reveal.js';
+	import { RevealJsContext, Slide, SvelteRevealHMR, white } from 'svelte-reveal.js';
 </script>
 
-<RevealJsContext themes={[white]}>
+<RevealJsContext themes="{[white]}">
 	<!-- use SvelteRevealHMR in dev to enable hot module reloading -->
 	<SvelteRevealHMR />
 
@@ -42,6 +44,16 @@ yarn add --dev svelte-reveal.js reveal.js
 		<h1>Hello world!</h1>
 	</Slide>
 </RevealJsContext>
+```
+
+### Recommendation
+
+I highly recommend to use the `hash` option set to `true` to add the current slide number to the URL hash so that reloading the page/copying the URL will return you to the same slide. See the option configuration below.
+
+In order to do that, you should add your presentation inside a destructured slug route (`/[...slug]`) and use the `hash` option:
+
+```html
+<RevealJsContext options={{ hash: true }}>
 ```
 
 ## API Reference
@@ -62,7 +74,7 @@ If you want a specific route for each slide, do provide the option `{ hash: true
 
 To load aspecific reveal.js plugin, import it from the library and pass it in the `plugins` props:
 
-```sv
+```html
 <script lang="ts">
 	import { RevealJsContext, markdown, white } from 'svelte-reveal.js';
 </script>
@@ -85,13 +97,23 @@ To load aspecific reveal.js plugin, import it from the library and pass it in th
 
 The available plugins are: `highlight` (code blocks), `markdown`, `search`, `notes`, `math` and `zoom`. Learn more [in the official documentation](https://revealjs.com/plugins/#built-in-plugins).
 
-**You need an extra theme for the highlight plugin. Two of which are exported by this library.**
+**You need an extra theme for the highlight plugin. Both available are exported by this library: `monokai` and `zenburn`.**
 
 #### Themes
 
 To load a built-in theme, import it from the library and pass it in the `themes` props.
 
-The available themes are: `black`, `beige`, `blood`, `league`, `night`, `moon`, `sky`, `simple`, `serif`, `solarized` and `white`
+The available themes are: `black`, `blackContrast`, `beige`, `blood`, `league`, `night`, `moon`, `sky`, `simple`, `serif`, `solarized`, `white` and `whiteContrast`.
+
+```html
+<script>
+	import { RevealJsContext, solarized } from 'svelte-reveal.js';
+</script>
+
+<RevealJsContext themes="{[solarized]}">
+	<!-- ... -->
+</RevealJsContext>
+```
 
 ### Slide
 
@@ -157,16 +179,16 @@ All `data-attributes` used by reveal.js have been exposed as Svelte props:
 
 Write the code with a line return, starting with a raw indentation:
 
-```sv
-<Code>
+```html
+<code>
 	{@html `
-<script>
-	let name = 'world';
-</script>
+	<script>
+		let name = 'world';
+	</script>
 
-<h1>Hello {name}!</h1>
+	<h1>Hello {name}!</h1>
 	`}
-</Code>
+</code>
 ```
 
 ### Notes
@@ -175,10 +197,8 @@ The component `<Notes>` allows you to write a side note that will only be displa
 
 There is no props for this component.
 
-```sv
-<Notes>
-	This is a very convenient way to write a speaker note
-</Notes>
+```html
+<Notes> This is a very convenient way to write a speaker note </Notes>
 ```
 
 Alternatively, you can also use the `Slide` `notes` props to define a note.
@@ -186,6 +206,13 @@ Alternatively, you can also use the `Slide` `notes` props to define a note.
 ### SvelteRevealHMR
 
 The component `<SvelteRevealHMR>` enables hot module reloading (HMR) in dev on your presentation. It's not working by default because Reveal.js adds classes to the DOM that Svelte isn't aware of and cleans up when it performs HMR.
+
+## Prerendering
+
+If you use the `hash` option set to `true`, 2 conditions should be met if you want to prerender your app:
+
+1. have a link to one of the slides of your presentation
+2. set the svelte config option: `prerender: { handleMissingId: 'warn' }`. You can define a function instead of the `warn` string to let other errors make the build fail (see [Svelte documentation](https://svelte.dev/docs/kit/configuration#prerender)).
 
 ## Acknowledgements
 
