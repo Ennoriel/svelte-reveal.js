@@ -32,6 +32,8 @@
 		transitionSpeed?: 'slow' | 'fast' | undefined;
 		visibility?: 'hidden' | undefined;
 
+		/** class */
+		class?: string | undefined;
 		/** children */
 		children: import('svelte').Snippet;
 	}
@@ -69,6 +71,8 @@
 		transitionSpeed,
 		visibility,
 
+		/** class */
+		class: classname,
 		/** children */
 		children
 	}: Props = $props();
@@ -106,6 +110,7 @@
 	data-transition={transition}
 	data-transition-speed={transitionSpeed}
 	data-visibility={visibility}
+	class={classname}
 >
 	{@render children()}
 </section>
