@@ -1,5 +1,15 @@
 # svelte-reveal.js
 
+## 2.0.0
+
+### Major Changes
+
+- e357034: support Svelte 5
+
+### Patch Changes
+
+- e23f690: add class props to Slide
+
 ## 1.1.0
 
 ### Minor Changes
